@@ -4,6 +4,7 @@ package shortlink;
 public final class Urls {
 
     public static final int MAX_LENGTH = 2000;
+    public static final int MIN_LENGTH = 0;
 
     private Urls() {
     }
@@ -18,7 +19,40 @@ public final class Urls {
      * </ul>
      */
     public static boolean isValid(String url) {
-        throw new UnsupportedOperationException("§2 : à écrire");
+
+       if(url == null || url.length()<MIN_LENGTH || url.length()>MAX_LENGTH ) {
+           return false;
+       }
+        String lower = url.toLowerCase();
+        int longueur = 0;
+
+        if (lower.startsWith("https://")) {
+            longueur = 8;
+        } else if (lower.startsWith("http://")) {
+            longueur = 7;
+        } else {
+            return false;
+        }
+
+        if (url.length() <= longueur){
+            return  false;
+        }
+
+        char premierCharSite = url.charAt(longueur);
+        if (premierCharSite == '/' || premierCharSite == '?' || premierCharSite == '#') {
+            return false; // Pas de nom de site valide (ex: http:///)
+        }
+        
+        for (int i = 0; i < url.length(); i++) {
+            char c = url.charAt(i);
+            if (Character.isWhitespace(c) || Character.isISOControl(c)) {
+                return false;
+            }
+        }
+
+        // Tout est valide
+        return true;
+
     }
 
     /**
