@@ -42,8 +42,8 @@ class CodesIsValidTest {
 
     @Test
     void tooLongOrNull () {
-        assertFalse(Codes.isValid("azertyuiopqsd"));    //13
+        assertFalse(Codes.isValid("azertyuiopqsd"));    //13 carac
         assertFalse(Codes.isValid(null));     // code vaut null
-        assertTrue(Codes.isValid("LaCathoLille"));     //12
+        assertTrue(Codes.isValid("LaCathoLille"));     //12 carac
     }
 }
