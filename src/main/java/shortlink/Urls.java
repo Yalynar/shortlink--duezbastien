@@ -49,8 +49,6 @@ public final class Urls {
                 return false;
             }
         }
-
-        // Tout est valide
         return true;
 
     }
